@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { List } from './components/List/List';
 
-const peoples: { id: number; name: string; years: number; img: string }[] = [
+const peoples = [
   {
     id: 1,
     name: 'Bertie Yates',
@@ -22,30 +23,17 @@ const peoples: { id: number; name: string; years: number; img: string }[] = [
 ];
 
 function App() {
-  const [people, setPeople] = useState(peoples);
+  const [data, setData] = useState(peoples);
 
   const clearAllHandler = () => {
-    setPeople([]);
+    setData([]);
   };
 
   return (
     <main className='h-screen bg-[#f28ab2] flex justify-center items-center'>
       <section className='w-[90vw] max-w-[450px] bg-white shadow-2xl rounded px-8 py-6'>
-        <h1 className='mb-8 text-3xl'>{people.length} birthdays today</h1>
-
-        {people.map((person) => (
-          <article key={person.id} className='flex mb-6'>
-            <img
-              className='rounded-full h-20 w-20 object-cover'
-              src={person.img}
-              alt={person.name}
-            />
-            <div className='flex flex-col justify-center ml-4 w-full'>
-              <h4 className='font-bold tracking-wider'>{person.name}</h4>
-              <p className='font-thin'>{person.years} years</p>
-            </div>
-          </article>
-        ))}
+        <h1 className='mb-8 text-3xl'>{data.length} birthdays today</h1>
+        <List data={data} />
         <button
           className='bg-[#f28ab2] w-full py-2 rounded text-white font-bold tracking-wider'
           onClick={clearAllHandler}>
